@@ -1,0 +1,428 @@
+.App {
+  text-align: center;
+}
+body {
+  margin: 0 !important;
+}
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+$primaryColor: #9e2a2b;
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.contentBody {
+  background: white;
+  padding: 20px;
+  min-height: 100vh;
+}
+.header1 {
+  color: #000;
+  font-feature-settings: "clig" off, "liga" off;
+  /* 24-simibold-title */
+  font-family: Inter;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 28px; /* 116.667% */
+  margin: 0;
+}
+.header2 {
+  color: #000;
+  font-feature-settings: "clig" off, "liga" off;
+  /* 20-simibold-title2 */
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 28px; /* 140% */
+  margin: 0;
+}
+.header3 {
+  color: #000;
+  font-feature-settings: "clig" off, "liga" off;
+  /* 20-simibold-title2 */
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 28px; /* 140% */
+  margin: 0;
+}
+.header4 {
+  color: #868686;
+  font-feature-settings: "clig" off, "liga" off;
+  /* 20-simibold-title2 */
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px; /* 140% */
+  margin: 0;
+}
+.content {
+  color: #000;
+  font-feature-settings: "clig" off, "liga" off;
+  /* 14-medium */
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.secondaryContent {
+  color: #868686;
+  font-feature-settings: "clig" off, "liga" off;
+  /* 14-regular */
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.buttonText {
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 125% */
+}
+
+.paragraph {
+  margin-top: 12px;
+}
+.ant-menu-title-content {
+  color: white;
+}
+.ant-drawer-content-wrapper {
+  max-width: 76vw !important;
+}
+.ant-menu-title-content {
+  font-size: 16px !important;
+  color: #000;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px; /* 137.5% */
+}
+
+.ant-card-body {
+  padding: 8px !important;
+  padding-bottom: 20px !important;
+}
+.status-card {
+  display: flex;
+  gap: 4px;
+}
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.profile-input {
+  width: 100%; /* Match the width in the screenshot */
+  padding: 10px; /* Adjust the padding to match the design */
+  margin-bottom: 16px; /* Space between the inputs */
+  border: 1px solid #ccc; /* Light grey border */
+  border-radius: 4px; /* Slightly rounded borders */
+  font-size: 16px;
+  /* Add other styles as needed */
+}
+
+.site-collapse-custom-panel {
+  background: #fff;
+  border: 0;
+  overflow: hidden;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-family: Inter;
+}
+
+/* Style for the collapse panel header */
+.site-collapse-custom-panel > .ant-collapse-header {
+  padding-left: 0 !important;
+  color: #9e2a2b;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: Inter;
+}
+
+.site-collapse-custom-panel .ant-collapse-content-box {
+  font-size: 16px;
+  padding-left: 20px;
+  margin-left: 10px;
+  font-family: Inter;
+}
+
+/* CSS file */
+
+.cardStyle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 13px;
+  margin-bottom: 10px;
+  /* other styles */
+}
+
+.infoIconStyle {
+  color: #9e2a2b;
+  font-size: 24px;
+  /* other styles */
+}
+
+.titleStyle {
+  font-weight: bold;
+  font-size: 18px;
+  /* other styles */
+  font-family: Inter;
+}
+
+.contentStyle {
+  font-family: Inter;
+  flex-grow: 1;
+  margin-left: 20px; /* Adjust spacing as needed */
+  align-self: flex-start;
+}
+
+.rightArrowStyle {
+  color: #9e2a2b; /* Adjust as needed */
+  font-size: 16px;
+  cursor: pointer;
+  /* other styles */
+}
+
+.dressCodeList {
+  padding-left: 10px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.dressCodeList li {
+  padding: 5px 0;
+}
+
+.imageRow {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.dressCodeImage {
+  width: 100%; /* This will make the image responsive */
+  height: auto;
+  object-fit: cover; /* This will cover the area without stretching the image */
+}
+.navBox {
+  border-bottom: 1px solid #f0f0f1;
+  padding: 20px 24px 40px 24px;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 10px;
+}
+.navLogoBox {
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+
+.navLogoBox img {
+  height: 100%;
+  width: auto;
+}
+
+.question-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.alert-inline {
+  display: inline-flex; /* Makes the alert hug its content */
+  align-items: center;
+  margin-left: 16px; /* Adjust as needed for spacing */
+  padding: 4px 10px;
+  color: #000;
+  font-feature-settings: "clig" off, "liga" off;
+  /* 14-medium */
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.coverImg {
+  height: 164px;
+  object-fit: cover;
+}
+
+.goButton{
+  display: none;
+  background-color: #9e2a2b;
+  color: white;
+  border: none;
+  padding: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.recapCardDisplay{
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  align-items: center; /* Changed from space-around to center for vertical alignment */
+  justify-content: space-between;
+  width: 300px;
+  background-color: #f0f0f1;
+}
+
+.recapIconDisplay{
+  display: flex;
+  flex-direction: row
+}
+
+.recapTitleDisplay{
+  display: flex;
+  flex-direction: column;
+  align-items:flex-start;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+@media (max-width: 500px) {
+  .headerMenu {
+    display: none;
+  }
+}
+@media (min-width: 500px) {
+  .menuicon {
+    display: none;
+  }
+  .ant-menu-title-content {
+    color: #ffffff !important;
+  }
+  .contentBody {
+    padding: 44px 5vw;
+    max-width: 1840px;
+    margin: auto;
+  }
+  .header1 {
+    font-size: 32px;
+  }
+  .header3 {
+    font-size: 20px;
+  }
+  .header4 {
+    font-size: 16px;
+  }
+  .content {
+    font-size: 20px;
+  }
+  .secondaryContent {
+    font-size: 20px;
+  }
+  .paragraph {
+    margin-top: 28px;
+  }
+  .ant-card-body {
+    padding: 20px !important;
+    padding-bottom: 20px !important;
+  }
+  .card-body {
+    gap: 8px;
+
+  }
+  .ant-col{
+    padding-right: 2vw !important;
+    padding-bottom: 1vw !important;
+  }
+  .coverImg {
+    height: 240px;
+  }
+  .recapCardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  .rightArrowStyle {
+    display: none;
+  }
+  .goButton{
+    display: flex;
+  }
+  .recapIconDisplay{
+    flex-direction: column;
+    align-items: center;
+  }
+  .recapTitleDisplay{
+    align-items: center;
+  }  
+  .recapCardDisplay{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 200px;
+    width: 350px;
+  }
+  .recapCardDisplay .infoIconStyle,
+  .recapCardDisplay .content,
+  .recapCardDisplay .secondaryContent,
+  .recapCardDisplay .rightArrowStyle {
+    margin-bottom: 20px; /* Adjust this value to increase or decrease the space between items */
+  }
+
+  .site-collapse-custom-panel {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  
+  .site-collapse-custom-panel > .ant-collapse-header {
+    font-size: 20px;
+  }
+  
+  .site-collapse-custom-panel .ant-collapse-content-box {
+    font-size: 20px;
+  }
+
+  .profile-input {
+    font-size: 18px;
+  }
+  
+}
