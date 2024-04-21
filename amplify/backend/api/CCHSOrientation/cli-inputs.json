@@ -4,10 +4,8 @@
     "apiName": "cchsorientation",
     "serviceName": "AppSync",
     "defaultAuthType": {
-      "mode": "AMAZON_COGNITO_USER_POOLS",
-      "cognitoUserPoolId": "authCCHSOrientation"
-    },
-    "conflictResolution": {},
-    "additionalAuthTypes": []
+      "mode": "API_KEY",
+      "expirationTime": 7
+    }
   }
 }
