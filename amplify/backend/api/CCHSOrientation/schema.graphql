@@ -7,5 +7,4 @@ type Progress @model {
   userID: String
   fullName: String
   progress: AWSJSON
-  
 }
