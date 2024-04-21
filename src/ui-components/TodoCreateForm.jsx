@@ -15,13 +15,11 @@ import {
 } from "@aws-amplify/ui-react";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { generateClient } from "aws-amplify/api";
-import { getProgress } from "../graphql/queries";
-import { updateProgress } from "../graphql/mutations";
+import { createTodo } from "../graphql/mutations";
 const client = generateClient();
-export default function ProgressUpdateForm(props) {
+export default function TodoCreateForm(props) {
   const {
-    id: idProp,
-    progress: progressModelProp,
+    clearOnSuccess = true,
     onSuccess,
     onError,
     onSubmit,
@@ -40,34 +38,11 @@ export default function ProgressUpdateForm(props) {
   const [progress, setProgress] = React.useState(initialValues.progress);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
-    const cleanValues = progressRecord
-      ? { ...initialValues, ...progressRecord }
-      : initialValues;
-    setUserID(cleanValues.userID);
-    setFullName(cleanValues.fullName);
-    setProgress(
-      typeof cleanValues.progress === "string" || cleanValues.progress === null
-        ? cleanValues.progress
-        : JSON.stringify(cleanValues.progress)
-    );
+    setUserID(initialValues.userID);
+    setFullName(initialValues.fullName);
+    setProgress(initialValues.progress);
     setErrors({});
   };
-  const [progressRecord, setProgressRecord] = React.useState(progressModelProp);
-  React.useEffect(() => {
-    const queryData = async () => {
-      const record = idProp
-        ? (
-            await client.graphql({
-              query: getProgress.replaceAll("__typename", ""),
-              variables: { id: idProp },
-            })
-          )?.data?.getProgress
-        : progressModelProp;
-      setProgressRecord(record);
-    };
-    queryData();
-  }, [idProp, progressModelProp]);
-  React.useEffect(resetStateValues, [progressRecord]);
   const validations = {
     userID: [],
     fullName: [],
@@ -99,9 +74,9 @@ export default function ProgressUpdateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
-          userID: userID ?? null,
-          fullName: fullName ?? null,
-          progress: progress ?? null,
+          userID,
+          fullName,
+          progress,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -132,16 +107,18 @@ export default function ProgressUpdateForm(props) {
             }
           });
           await client.graphql({
-            query: updateProgress.replaceAll("__typename", ""),
+            query: createTodo.replaceAll("__typename", ""),
             variables: {
               input: {
-                id: progressRecord.id,
                 ...modelFields,
               },
             },
           });
           if (onSuccess) {
             onSuccess(modelFields);
+          }
+          if (clearOnSuccess) {
+            resetStateValues();
           }
         } catch (err) {
           if (onError) {
@@ -150,7 +127,7 @@ export default function ProgressUpdateForm(props) {
           }
         }
       }}
-      {...getOverrideProps(overrides, "ProgressUpdateForm")}
+      {...getOverrideProps(overrides, "TodoCreateForm")}
       {...rest}
     >
       <TextField
@@ -209,7 +186,6 @@ export default function ProgressUpdateForm(props) {
         label="Progress"
         isRequired={false}
         isReadOnly={false}
-        value={progress}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -236,14 +212,13 @@ export default function ProgressUpdateForm(props) {
         {...getOverrideProps(overrides, "CTAFlex")}
       >
         <Button
-          children="Reset"
+          children="Clear"
           type="reset"
           onClick={(event) => {
             event.preventDefault();
             resetStateValues();
           }}
-          isDisabled={!(idProp || progressModelProp)}
-          {...getOverrideProps(overrides, "ResetButton")}
+          {...getOverrideProps(overrides, "ClearButton")}
         ></Button>
         <Flex
           gap="15px"
@@ -253,10 +228,7 @@ export default function ProgressUpdateForm(props) {
             children="Submit"
             type="submit"
             variation="primary"
-            isDisabled={
-              !(idProp || progressModelProp) ||
-              Object.values(errors).some((e) => e?.hasError)
-            }
+            isDisabled={Object.values(errors).some((e) => e?.hasError)}
             {...getOverrideProps(overrides, "SubmitButton")}
           ></Button>
         </Flex>

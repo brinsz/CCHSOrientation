@@ -23,16 +23,19 @@ export declare type ValidationResponse = {
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
 export declare type ProgressUpdateFormInputValues = {
     userID?: string;
+    fullName?: string;
     progress?: string;
 };
 export declare type ProgressUpdateFormValidationValues = {
     userID?: ValidationFunction<string>;
+    fullName?: ValidationFunction<string>;
     progress?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type ProgressUpdateFormOverridesProps = {
     ProgressUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
     userID?: PrimitiveOverrideProps<TextFieldProps>;
+    fullName?: PrimitiveOverrideProps<TextFieldProps>;
     progress?: PrimitiveOverrideProps<TextAreaFieldProps>;
 } & EscapeHatchProps;
 export declare type ProgressUpdateFormProps = React.PropsWithChildren<{

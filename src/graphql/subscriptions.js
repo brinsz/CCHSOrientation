@@ -6,6 +6,7 @@ export const onCreateProgress = /* GraphQL */ `
     onCreateProgress(filter: $filter) {
       id
       userID
+      fullName
       progress
       createdAt
       updatedAt
@@ -18,6 +19,7 @@ export const onUpdateProgress = /* GraphQL */ `
     onUpdateProgress(filter: $filter) {
       id
       userID
+      fullName
       progress
       createdAt
       updatedAt
@@ -30,6 +32,7 @@ export const onDeleteProgress = /* GraphQL */ `
     onDeleteProgress(filter: $filter) {
       id
       userID
+      fullName
       progress
       createdAt
       updatedAt

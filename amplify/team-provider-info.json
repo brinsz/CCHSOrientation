@@ -16,7 +16,8 @@
         "CCHSOrientation": {}
       },
       "api": {
-        "CCHSOrientation": {}
+        "CCHSOrientation": {},
+        "cchsorientation": {}
       }
     }
   }

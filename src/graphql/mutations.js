@@ -9,6 +9,7 @@ export const createProgress = /* GraphQL */ `
     createProgress(input: $input, condition: $condition) {
       id
       userID
+      fullName
       progress
       createdAt
       updatedAt
@@ -24,6 +25,7 @@ export const updateProgress = /* GraphQL */ `
     updateProgress(input: $input, condition: $condition) {
       id
       userID
+      fullName
       progress
       createdAt
       updatedAt
@@ -39,6 +41,7 @@ export const deleteProgress = /* GraphQL */ `
     deleteProgress(input: $input, condition: $condition) {
       id
       userID
+      fullName
       progress
       createdAt
       updatedAt

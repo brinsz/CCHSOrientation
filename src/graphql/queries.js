@@ -6,6 +6,7 @@ export const getProgress = /* GraphQL */ `
     getProgress(id: $id) {
       id
       userID
+      fullName
       progress
       createdAt
       updatedAt
@@ -23,6 +24,7 @@ export const listProgresses = /* GraphQL */ `
       items {
         id
         userID
+        fullName
         progress
         createdAt
         updatedAt

@@ -30,18 +30,22 @@ export default function ProgressCreateForm(props) {
   } = props;
   const initialValues = {
     userID: "",
+    fullName: "",
     progress: "",
   };
   const [userID, setUserID] = React.useState(initialValues.userID);
+  const [fullName, setFullName] = React.useState(initialValues.fullName);
   const [progress, setProgress] = React.useState(initialValues.progress);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setUserID(initialValues.userID);
+    setFullName(initialValues.fullName);
     setProgress(initialValues.progress);
     setErrors({});
   };
   const validations = {
     userID: [],
+    fullName: [],
     progress: [{ type: "JSON" }],
   };
   const runValidationTasks = async (
@@ -71,6 +75,7 @@ export default function ProgressCreateForm(props) {
         event.preventDefault();
         let modelFields = {
           userID,
+          fullName,
           progress,
         };
         const validationResponses = await Promise.all(
@@ -135,6 +140,7 @@ export default function ProgressCreateForm(props) {
           if (onChange) {
             const modelFields = {
               userID: value,
+              fullName,
               progress,
             };
             const result = onChange(modelFields);
@@ -150,6 +156,32 @@ export default function ProgressCreateForm(props) {
         hasError={errors.userID?.hasError}
         {...getOverrideProps(overrides, "userID")}
       ></TextField>
+      <TextField
+        label="Full name"
+        isRequired={false}
+        isReadOnly={false}
+        value={fullName}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              userID,
+              fullName: value,
+              progress,
+            };
+            const result = onChange(modelFields);
+            value = result?.fullName ?? value;
+          }
+          if (errors.fullName?.hasError) {
+            runValidationTasks("fullName", value);
+          }
+          setFullName(value);
+        }}
+        onBlur={() => runValidationTasks("fullName", fullName)}
+        errorMessage={errors.fullName?.errorMessage}
+        hasError={errors.fullName?.hasError}
+        {...getOverrideProps(overrides, "fullName")}
+      ></TextField>
       <TextAreaField
         label="Progress"
         isRequired={false}
@@ -159,6 +191,7 @@ export default function ProgressCreateForm(props) {
           if (onChange) {
             const modelFields = {
               userID,
+              fullName,
               progress: value,
             };
             const result = onChange(modelFields);

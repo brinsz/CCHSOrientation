@@ -15,13 +15,13 @@ import {
 } from "@aws-amplify/ui-react";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { generateClient } from "aws-amplify/api";
-import { getProgress } from "../graphql/queries";
-import { updateProgress } from "../graphql/mutations";
+import { getTodo } from "../graphql/queries";
+import { updateTodo } from "../graphql/mutations";
 const client = generateClient();
-export default function ProgressUpdateForm(props) {
+export default function TodoUpdateForm(props) {
   const {
     id: idProp,
-    progress: progressModelProp,
+    todo: todoModelProp,
     onSuccess,
     onError,
     onSubmit,
@@ -40,8 +40,8 @@ export default function ProgressUpdateForm(props) {
   const [progress, setProgress] = React.useState(initialValues.progress);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
-    const cleanValues = progressRecord
-      ? { ...initialValues, ...progressRecord }
+    const cleanValues = todoRecord
+      ? { ...initialValues, ...todoRecord }
       : initialValues;
     setUserID(cleanValues.userID);
     setFullName(cleanValues.fullName);
@@ -52,22 +52,22 @@ export default function ProgressUpdateForm(props) {
     );
     setErrors({});
   };
-  const [progressRecord, setProgressRecord] = React.useState(progressModelProp);
+  const [todoRecord, setTodoRecord] = React.useState(todoModelProp);
   React.useEffect(() => {
     const queryData = async () => {
       const record = idProp
         ? (
             await client.graphql({
-              query: getProgress.replaceAll("__typename", ""),
+              query: getTodo.replaceAll("__typename", ""),
               variables: { id: idProp },
             })
-          )?.data?.getProgress
-        : progressModelProp;
-      setProgressRecord(record);
+          )?.data?.getTodo
+        : todoModelProp;
+      setTodoRecord(record);
     };
     queryData();
-  }, [idProp, progressModelProp]);
-  React.useEffect(resetStateValues, [progressRecord]);
+  }, [idProp, todoModelProp]);
+  React.useEffect(resetStateValues, [todoRecord]);
   const validations = {
     userID: [],
     fullName: [],
@@ -132,10 +132,10 @@ export default function ProgressUpdateForm(props) {
             }
           });
           await client.graphql({
-            query: updateProgress.replaceAll("__typename", ""),
+            query: updateTodo.replaceAll("__typename", ""),
             variables: {
               input: {
-                id: progressRecord.id,
+                id: todoRecord.id,
                 ...modelFields,
               },
             },
@@ -150,7 +150,7 @@ export default function ProgressUpdateForm(props) {
           }
         }
       }}
-      {...getOverrideProps(overrides, "ProgressUpdateForm")}
+      {...getOverrideProps(overrides, "TodoUpdateForm")}
       {...rest}
     >
       <TextField
@@ -242,7 +242,7 @@ export default function ProgressUpdateForm(props) {
             event.preventDefault();
             resetStateValues();
           }}
-          isDisabled={!(idProp || progressModelProp)}
+          isDisabled={!(idProp || todoModelProp)}
           {...getOverrideProps(overrides, "ResetButton")}
         ></Button>
         <Flex
@@ -254,7 +254,7 @@ export default function ProgressUpdateForm(props) {
             type="submit"
             variation="primary"
             isDisabled={
-              !(idProp || progressModelProp) ||
+              !(idProp || todoModelProp) ||
               Object.values(errors).some((e) => e?.hasError)
             }
             {...getOverrideProps(overrides, "SubmitButton")}

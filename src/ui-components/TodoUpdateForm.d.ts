@@ -21,31 +21,32 @@ export declare type ValidationResponse = {
     errorMessage?: string;
 };
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
-export declare type ProgressCreateFormInputValues = {
+export declare type TodoUpdateFormInputValues = {
     userID?: string;
     fullName?: string;
     progress?: string;
 };
-export declare type ProgressCreateFormValidationValues = {
+export declare type TodoUpdateFormValidationValues = {
     userID?: ValidationFunction<string>;
     fullName?: ValidationFunction<string>;
     progress?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type ProgressCreateFormOverridesProps = {
-    ProgressCreateFormGrid?: PrimitiveOverrideProps<GridProps>;
+export declare type TodoUpdateFormOverridesProps = {
+    TodoUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
     userID?: PrimitiveOverrideProps<TextFieldProps>;
     fullName?: PrimitiveOverrideProps<TextFieldProps>;
     progress?: PrimitiveOverrideProps<TextAreaFieldProps>;
 } & EscapeHatchProps;
-export declare type ProgressCreateFormProps = React.PropsWithChildren<{
-    overrides?: ProgressCreateFormOverridesProps | undefined | null;
+export declare type TodoUpdateFormProps = React.PropsWithChildren<{
+    overrides?: TodoUpdateFormOverridesProps | undefined | null;
 } & {
-    clearOnSuccess?: boolean;
-    onSubmit?: (fields: ProgressCreateFormInputValues) => ProgressCreateFormInputValues;
-    onSuccess?: (fields: ProgressCreateFormInputValues) => void;
-    onError?: (fields: ProgressCreateFormInputValues, errorMessage: string) => void;
-    onChange?: (fields: ProgressCreateFormInputValues) => ProgressCreateFormInputValues;
-    onValidate?: ProgressCreateFormValidationValues;
+    id?: string;
+    todo?: any;
+    onSubmit?: (fields: TodoUpdateFormInputValues) => TodoUpdateFormInputValues;
+    onSuccess?: (fields: TodoUpdateFormInputValues) => void;
+    onError?: (fields: TodoUpdateFormInputValues, errorMessage: string) => void;
+    onChange?: (fields: TodoUpdateFormInputValues) => TodoUpdateFormInputValues;
+    onValidate?: TodoUpdateFormValidationValues;
 } & React.CSSProperties>;
-export default function ProgressCreateForm(props: ProgressCreateFormProps): React.ReactElement;
+export default function TodoUpdateForm(props: TodoUpdateFormProps): React.ReactElement;
