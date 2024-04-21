@@ -6,10 +6,10 @@ import {
   CheckCircleFilled,
   MinusCircleFilled,
 } from "@ant-design/icons";
-import { Drawer, Menu, Card, Progress, Row, Col } from "antd";
+import { Drawer, Menu, Card, Progress, Row, Col, Button } from "antd";
 import { content } from "../JSONs/Modules";
 import { generateClient } from "aws-amplify/api";
-import { createProgress, updateProgress } from "../graphql/mutations";
+import { createProgress, updateProgress, deleteProgress } from "../graphql/mutations";
 import { listProgresses } from "../graphql/queries";
 import { useProgress } from "../ProgressContext";
 
@@ -17,7 +17,7 @@ const orientationModules = content;
 
 function Home(props) {
   // completedModules is an Array of title the user has passed
-  const { completedModules } = useProgress();
+  const { completedModules, updateCompletedModules } = useProgress();
   // console.log('saved modules are: ',completedModules)
   const [myRecord, setMyRecord] = useState('');
   const client = generateClient();
@@ -35,10 +35,17 @@ function Home(props) {
   const handleCardClick = (module) => {
     navigate(`/video/${module.title}`, { state: { module, myRecord } });
   };
-
-
+  async function tempDelete(theID) {
+      const deletedProgress = await client.graphql({
+        query: deleteProgress,
+        variables: {
+            input: {
+                id: theID
+            }
+        }
+    });
+  }
   async function fetchProgress() {
-    let tempUser = '';
     // * Try to get the progress
     try{
     const apiData = await client.graphql({ query: listProgresses, variables: variables });
@@ -63,7 +70,8 @@ function Home(props) {
 
     } else {
       setMyRecord(apiData.data.listProgresses.items[0].id)
-      console.log('my progress is',apiData.data.listProgresses.items[0].progress)
+      // console.log('my progress is',typeof(apiData.data.listProgresses.items[0].progress))
+      updateCompletedModules(JSON.parse(apiData.data.listProgresses.items[0].progress))
     }
     } catch (error) {
       console.log(error)
@@ -73,6 +81,7 @@ function Home(props) {
 
   useEffect(() => {
 // -- TODO -- We need to load user's progress and make sure it's synced with completedModules or initialize it -- 
+    window.scrollTo(0, 0);
     fetchProgress();
 
   }, []);
@@ -113,27 +122,22 @@ function Home(props) {
                   onClick={() => handleCardClick(module)}
                 >
                   <div className="card-body">
-                    <div className="content">{module.title}</div>
+                    <div className="content semibold">{module.title}</div>
                     <div className="secondaryContent">
                       {module.estimationTime}
                     </div>
-
-                    {completedModules.includes(module.title) && (
-                      <div className="status-card content">
-                        <CheckCircleFilled style={{ color: "#299E63" }} />
-                        Completed
-                      </div>
-                    )}
-                    {!completedModules.includes(module.title) && (
-                      <div className="status-card content">
-                        <MinusCircleFilled style={{ color: "#C51C00" }} />
-                        Incomplete
-                      </div>
-                    )}
+                    
+                    <div className="status-card content">
+                        {completedModules.includes(module.title) ? <><CheckCircleFilled style={{ color: "#299E63" }} />
+                        Completed</> : 
+                        <><MinusCircleFilled style={{ color: "#C51C00" }} />
+                        Incomplete</>}
+                    </div>
                   </div>
                 </Card>
               </Col>
             ))}
+            <Button className="actionButton" onClick={() => {tempDelete(myRecord); window.location.reload()}}>!! Temp Delete Progress !!</Button>
         </Row>
       </div>
     </div>
