@@ -1,0 +1,7 @@
+{
+    "AppSyncApiName": "cchsorientation",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": false,
+    "S3DeploymentBucket": "amplify-amplify0d62f84b2ec44-staging-160908-deployment",
+    "S3DeploymentRootKey": "amplify-appsync-files/40d73adaab010e198cef5b9d7c169dba585117eb"
+}
