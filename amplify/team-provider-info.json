@@ -18,6 +18,9 @@
       "api": {
         "CCHSOrientation": {},
         "cchsorientation": {}
+      },
+      "hosting": {
+        "S3AndCloudFront": {}
       }
     }
   }

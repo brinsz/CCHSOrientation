@@ -34,7 +34,10 @@ const awsmobile = {
     },
     "aws_cognito_verification_mechanisms": [
         "EMAIL"
-    ]
+    ],
+    "aws_content_delivery_bucket": "rientation-20240421122000-hostingbucket-staging",
+    "aws_content_delivery_bucket_region": "us-east-2",
+    "aws_content_delivery_url": "https://d1st3xujl199tj.cloudfront.net"
 };
 
 
