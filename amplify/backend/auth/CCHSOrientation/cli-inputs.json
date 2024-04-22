@@ -1,8 +1,6 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "testAuthIdentityPool",
-    "allowUnauthenticatedIdentities": false,
     "resourceNameTruncated": "cchsor932dde83",
     "userPoolName": "CCHSOrientation",
     "autoVerifiedAttributes": [
@@ -30,13 +28,20 @@
     "aliasAttributes": [],
     "userpoolClientGenerateSecret": false,
     "userpoolClientRefreshTokenValidity": 30,
-    "userpoolClientWriteAttributes": [],
-    "userpoolClientReadAttributes": [],
+    "userpoolClientWriteAttributes": [
+      "family_name",
+      "given_name",
+      "name"
+    ],
+    "userpoolClientReadAttributes": [
+      "email",
+      "name"
+    ],
     "userpoolClientLambdaRole": "CCHSOr932dde83_userpoolclient_lambda_role",
-    "userpoolClientSetAttributes": false,
+    "userpoolClientSetAttributes": true,
     "sharedId": "932dde83",
     "resourceName": "CCHSOrientation",
-    "authSelections": "identityPoolAndUserPool",
+    "authSelections": "userPoolOnly",
     "serviceName": "Cognito",
     "usernameAttributes": [
       "email"
@@ -45,9 +50,28 @@
     "userPoolGroups": false,
     "userPoolGroupList": [],
     "adminQueries": false,
-    "thirdPartyAuth": false,
-    "authProviders": [],
     "usernameCaseSensitive": false,
-    "useEnabledMfas": true
+    "useEnabledMfas": true,
+    "authRoleArn": {
+      "Fn::GetAtt": [
+        "AuthRole",
+        "Arn"
+      ]
+    },
+    "unauthRoleArn": {
+      "Fn::GetAtt": [
+        "UnauthRole",
+        "Arn"
+      ]
+    },
+    "breakCircularDependency": true,
+    "dependsOn": [],
+    "triggers": {},
+    "hostedUI": false,
+    "authProviders": [],
+    "parentStack": {
+      "Ref": "AWS::StackId"
+    },
+    "permissions": []
   }
 }
