@@ -43,3 +43,6 @@ amplifytools.xcconfig
 .secret-*
 **.sample
 #amplify-do-not-edit-end
+
+../citaws/CCHSOrientation/amplify/mock-data
+../citaws/CCHSOrientation/amplify/mock-api-resources

@@ -23,5 +23,29 @@
         "S3AndCloudFront": {}
       }
     }
+  },
+  "other": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-cchsorientation-other-85061-authRole",
+      "UnauthRoleArn": "arn:aws:iam::476351187131:role/amplify-cchsorientation-other-85061-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::476351187131:role/amplify-cchsorientation-other-85061-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-cchsorientation-other-85061-deployment",
+      "UnauthRoleName": "amplify-cchsorientation-other-85061-unauthRole",
+      "StackName": "amplify-cchsorientation-other-85061",
+      "StackId": "arn:aws:cloudformation:us-east-2:476351187131:stack/amplify-cchsorientation-other-85061/87fb0160-005c-11ef-ad87-069b325e9321",
+      "AmplifyAppId": "dw0zvakirekrj"
+    },
+    "categories": {
+      "auth": {
+        "CCHSOrientation": {}
+      },
+      "api": {
+        "cchsorientation": {}
+      },
+      "hosting": {
+        "S3AndCloudFront": {}
+      }
+    }
   }
 }
